@@ -1,11 +1,13 @@
-const path = require('path');
+module.exports = () => {
+  // ...
+};
 
-// Obtener la ruta absoluta
-const absolutePath = path.resolve(__dirname, 'index.js');
-console.log('Ruta absoluta:', absolutePath);
+try {
+  const result = mdLinks(path, options);
+  console.log(result);
+} catch (error) {
+  console.error(error.message);
+}
 
-// Obtener la ruta relativa 
-const currentWorkingDirectory = process.cwd();
-const relativePath = path.relative(currentWorkingDirectory, 'index.js');
-console.log('Ruta relativa:', relativePath);
+module.exports = mdLinks;
 
