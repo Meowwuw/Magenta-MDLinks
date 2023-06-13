@@ -1,33 +1,40 @@
 const fs = require('fs');
-const validateRoute = require('./validatorRoutes');
 
-const ruta = 'C:/Users/USUARIO/Desktop/Laboratoria/DEV005-md-links-lite/Pruebitas/soyMDN.md';
+//const ruta = 'C:/Users/USUARIO/Desktop/Laboratoria/DEV005-md-links-lite/Pruebitas/soyMDN.md';
 
-function readFile(file) {
-//   const absolutePath = validateRoute(file);
-
-//   if (!absolutePath) {
-    
-//     return undefined;
-//   }
-
-  fs.readFile(absolutePath, 'utf8', (err, data) => {
-    if (err) {
-        console.log('algo')
-      return undefined;
+function extractLinks(file) {
+  return new Promise((resolve, reject) => {
+    const absolutePath = file;
+    if (!absolutePath) {
+      reject('Ruta de archivo no proporcionada');
     }
 
-    console.log(absolutePath);
-    console.log(data);}
-  );
+    fs.readFile(absolutePath, 'utf8', (err, data) => {
+      if (err) {
+        reject('Error al leer el archivo: ' + err);
+      } else {
+        const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+        const matches = data.matchAll(linkRegex);
+        const links = [];
+
+        for (const match of matches) {
+          const url = match[2];
+          links.push({ url });
+        }
+
+        resolve(links);
+      }
+    });
+  });
 }
 
-console.log(readFile(ruta))
-
-// readFile(ruta)
-// .then((res)=>{
-//     console.log(res)
-// })
-// .catch((err)=>{
-
-// })
+/* extractLinks(ruta)
+  .then(links => {
+    console.log('Enlaces encontrados:');
+    console.log(links);
+  })
+  .catch(error => {
+    console.log('Error:', error);
+  });
+*/
+  module.exports = extractLinks;
