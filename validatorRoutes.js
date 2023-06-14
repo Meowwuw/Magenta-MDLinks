@@ -18,6 +18,7 @@ function validateRoute(route) {
   const fileExtension = path.extname(absolutePath);
   if (fileExtension !== '.md') {
     return undefined;
+    //no retornar undefined
   }
 
   return absolutePath;

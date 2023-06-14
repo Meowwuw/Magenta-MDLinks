@@ -2,7 +2,7 @@ const fs = require('fs');
 
 //const ruta = 'C:/Users/USUARIO/Desktop/Laboratoria/DEV005-md-links-lite/Pruebitas/soyMDN.md';
 
-function extractLinks(file) {
+function readFile(file) {
   return new Promise((resolve, reject) => {
     const absolutePath = file;
     if (!absolutePath) {
@@ -19,7 +19,8 @@ function extractLinks(file) {
 
         for (const match of matches) {
           const url = match[2];
-          links.push({ url });
+          const text = match[1]
+          links.push({ url, text, absolutePath});
         }
 
         resolve(links);
@@ -27,8 +28,8 @@ function extractLinks(file) {
     });
   });
 }
-
-/* extractLinks(ruta)
+/*
+extractLinks(ruta)
   .then(links => {
     console.log('Enlaces encontrados:');
     console.log(links);
@@ -36,5 +37,5 @@ function extractLinks(file) {
   .catch(error => {
     console.log('Error:', error);
   });
-*/
-  module.exports = extractLinks;
+ */
+  module.exports = readFile;
