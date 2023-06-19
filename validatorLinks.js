@@ -4,7 +4,7 @@ const axios = require('axios');
 
 function validateLink(link) {
   return new Promise((resolve, reject) => {
-    axios.head(link.url)
+    axios.get(link.url)
       .then(response => {
         const status = response.status;
         const isValid = status < 400;
@@ -35,8 +35,6 @@ function validateLink(link) {
       });
   });
 }
-
-  
 
 /*validateLink(ruta)
   .then(result => {

@@ -3,7 +3,8 @@ const readFile = require('./readFile');
 const validateLink = require('./validatorLinks');
 
 function mdLinks(route, options) {
-  const absolutePath = validateRoute(route);
+  try {
+    const absolutePath = validateRoute(route);
 
     return readFile(absolutePath)
       .then(links => {
@@ -15,16 +16,19 @@ function mdLinks(route, options) {
         }
       })
       .catch(error => {
-        console.error(error);
+        throw error;
       });
-  } 
+  } catch (error) {
+    return Promise.reject(error);
+  }
+}
 
-mdLinks('C:/Users/USUARIO/Desktop/Laboratoria/DEV005-md-links-lite/pruebitas/soyMDN.md', { validate: true })
+mdLinks('C:/Users/USUARIO/Desktop/Laboratoria/DEV005-md-links-lite/pruebitas/panda.jpg', { validate: true })
   .then(links => {
-    console.log(links);  
+    console.log(links);
   })
   .catch(error => {
-    console.error(error);
+    console.log(error);
   });
 
-  module.exports = mdLinks;
+module.exports = mdLinks;

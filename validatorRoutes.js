@@ -12,14 +12,13 @@ function validateRoute(route) {
   }
 
   if (!fs.existsSync(absolutePath) || fs.lstatSync(absolutePath).isDirectory()) {
-    return undefined;
+    return 'Ruta de archivo no válida o directorio';
   }
 
   const fileExtension = path.extname(absolutePath);
   if (fileExtension !== '.md') {
-    return undefined;
-    //no retornar undefined
-  }
+    return 'Extensión de archivo inválida';
+  }  
 
   return absolutePath;
 }
