@@ -25,6 +25,6 @@ Tratamiento de rutas y archivos en Node.js: Al manipular archivos y rutas, es ne
 
 ### Diagrama de flujo
 
-<iframe width="768" height="432" src="https://miro.com/app/live-embed/uXjVMF1ELdk=/?moveToViewport=-1443,-451,2361,2186&embedId=272034522520" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+<img src="MD Links.jpg">
 
 
